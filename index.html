@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binary Search Tree</title>
+</head>
+<body>
+
+  <div id="add-tab">
+    <input id="text" type="text"/>
+    <button id="add">Add</button>
+  </div>
+  <br/>
+  <div id="options">
+    <button id="pretraverse">Pre Traverse</button>
+    <button id="intraverse">In Traverse</button>
+    <button id="posttraverse">Post Traverse</button>
+  </div>
+  <br/>
+  <div id="result">
+
+  </div>
+
+  <script src="js/Splay-Tree.js"></script>
+
+  <script>
+
+  var i = 1;
+
+  //Splay tree init
+  var splayTree = new SPLAYTREE();
+
+  //override the visit of node function
+  SPLAYNODE.visit = function(){
+    console.log("info: "+this.info+" left: "+(this.getLeft() != null? this.left.getInfo(): null)
+                    +" right: "+(this.getRight() != null? this.right.getInfo(): null)
+                    +" parent: "+(this.getParent() != null? this.parent.getInfo(): null));
+  };
+  //end of overriding when a node is visited
+
+  //override the operate of node function
+  SPLAYNODE.operate = function(){
+    console.log("been duplicated: "+this.info);
+  };
+  //end of overriding when there is duplicate node
+
+  //override the compare of node function
+  SPLAYNODE.compare = function(o){
+    if(this.info > o.getInfo()){
+      return 1;
+    }else if(this.info < o.getInfo()){
+      return -1;
+    }
+    return 0;
+  };
+  //end of overriding when a node is compared
+
+  splayTree.insertSTDup(3);
+  splayTree.insertSTDup(2);
+  splayTree.insertSTDup(8);
+  splayTree.insertSTDup(9);
+  splayTree.insertSTDup(6);
+  splayTree.insertST(5);
+
+  //delete a none existing object
+  splayTree.delete(7);
+
+  //pre traverse
+  console.log("preTraverse");
+  splayTree.preTraverse(splayTree.getRoot());
+
+  //post traverse
+  console.log("PostTraversal");
+  splayTree.postTraverse(splayTree.getRoot());
+
+  //in traverse
+  console.log("inTraversal");
+  splayTree.inTraverse(binaryTree.getRoot());
+
+  //listener for the add button
+  document.getElementById("add").addEventListener("click", function(){
+      var text = document.getElementById("text").value;
+
+
+
+  });
+  //end of listener to the add button
+
+  </script>
+
+</body>
+</html>
